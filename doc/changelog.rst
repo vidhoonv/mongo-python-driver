@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Changes in Version 3.0.4
+------------------------
+
+Changes in internal classes
+...........................
+
+The private ``PeriodicExecutor`` class no longer takes a ``condition_class``
+option, and the private ``thread_util.Event`` class is removed.
+
 Changes in Version 3.0.3
 ------------------------
 
