@@ -158,7 +158,7 @@ class Monitor(object):
         address = self._server_description.address
         if self._publish:
             self._listeners.publish_server_heartbeat_started(address)
-        with self._pool.get_socket({}) as sock_info:
+        with self._pool.get_socket(self._settings.all_credentials) as sock_info:
             response, round_trip_time = self._check_with_socket(
                 sock_info, metadata=metadata)
             self._avg_round_trip_time.add_sample(round_trip_time)

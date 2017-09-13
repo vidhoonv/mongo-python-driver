@@ -35,7 +35,8 @@ class TopologySettings(object):
                  condition_class=None,
                  local_threshold_ms=LOCAL_THRESHOLD_MS,
                  server_selection_timeout=SERVER_SELECTION_TIMEOUT,
-                 heartbeat_frequency=common.HEARTBEAT_FREQUENCY):
+                 heartbeat_frequency=common.HEARTBEAT_FREQUENCY,                 
+                 all_credentials=None):
         """Represent MongoClient's configuration.
 
         Take a list of (host, port) pairs and optional replica set name.
@@ -56,6 +57,7 @@ class TopologySettings(object):
         self._heartbeat_frequency = heartbeat_frequency
         self._direct = (len(self._seeds) == 1 and not replica_set_name)
         self._topology_id = ObjectId()
+        self._all_credentials = all_credentials
 
     @property
     def seeds(self):

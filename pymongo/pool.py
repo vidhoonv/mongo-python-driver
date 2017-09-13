@@ -455,7 +455,7 @@ class SocketInfo(object):
           - `collation`: The collation for this command.
           - `session`: optional ClientSession instance.
         """
-        if self.max_wire_version < 4 and not read_concern.ok_for_legacy:
+        if not read_concern.ok_for_legacy:
             raise ConfigurationError(
                 'read concern level of %s is not valid '
                 'with a max wire version of %d.'
@@ -464,9 +464,9 @@ class SocketInfo(object):
                 collation is None):
             raise ConfigurationError(
                 'Collation is unsupported for unacknowledged writes.')
-        if self.max_wire_version >= 5 and write_concern:
+        if write_concern:
             spec['writeConcern'] = write_concern.document
-        elif self.max_wire_version < 5 and collation is not None:
+        elif collation is not None:
             raise ConfigurationError(
                 'Must be connected to MongoDB 3.4+ to use a collation.')
         try:
